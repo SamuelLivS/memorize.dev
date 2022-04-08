@@ -14,31 +14,25 @@
 
 <body>
     <section id="startGameView">
-            <h1>Memorize<span>.dev</span></h1>
-            <form id="loginForm">
-                <label for="playerName" class="sr-only">Nome</label>
-                <input maxlength="15" type="text" name="playerName" id="playerName" placeholder="Digite seu nome">
-                <button id="playButton">Jogar</button>
-            </form>
+        <h1>Memorize<span>.dev</span></h1>
+        <form id="loginForm">
+            <label for="playerName" class="sr-only">Nome</label>
+            <input maxlength="15" type="text" name="playerName" id="playerName" placeholder="Digite seu nome">
+            <button class="btn" id="playButton">Jogar</button>
+        </form>
     </section>
 
     <section id="gameBoard">
-        <div id="f4sd56fdsf" class="card" data-icon="bootstrap">
-            <div class="cardFront">
-                <img src="./assets/images/bootstrap.png">
-            </div>
-            <div class="cardBack">
-                &lt;/&gt;
-            </div>
-        </div>
+
     </section>
 
     <section id="gameOverView">
         <h2>Parabéns, você completou o jogo!</h2>
-        <button id="restartButton" onclick="restart()">Jogar Novamente</button>
+        <p id="motionsView"></p>
+        <button class="btn" id="restartButton" onclick="restart()">Jogar Novamente</button>
         <div id="rankingView">
             <h3>Menos movimentos</h3>
-            <table class="rankingTable">
+            <table id="rankingTable">
                 <thead>
                     <tr>
                         <th>Posição</th>
@@ -46,25 +40,10 @@
                         <th>Movimentos</th>
                     </tr>
                 </thead>
-                <!-- <tbody>
-                    <tr>
-                        <td>1°</td>
-                        <td>Samuel</td>
-                        <td>16</td>
-                    </tr>
-                    <tr>
-                        <td>2°</td>
-                        <td>Mikael</td>
-                        <td>17</td>
-                    </tr>
-                    <tr>
-                        <td>3°</td>
-                        <td>Maria</td>
-                        <td>17</td>
-                    </tr>
-                </tbody> -->
+                <tbody></tbody>
             </table>
         </div>
+        <button class="btn" onclick="restartRanking()">Limpar Ranking</button>
     </section>
     <script src="./scripts/game.js"></script>
     <script src="./scripts/script.js"></script>

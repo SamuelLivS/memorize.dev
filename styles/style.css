@@ -7,6 +7,7 @@
 body{
     font-family: 'Righteous', sans-serif;
     background-color: #ad84b2;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,7 +68,7 @@ body{
     margin-bottom: 10px;
 }
 
-#restartButton, #playButton {
+.btn{
     padding: 1rem;
     margin-bottom: 10px;
     font-size: 1rem;
@@ -78,7 +79,7 @@ body{
     cursor: pointer;
 }
 
-#restartButton:active,  #playButton:active{
+.btn:active{
     opacity: .8;
 }
 
@@ -95,13 +96,13 @@ body{
     text-align: center;
 }
 
-.rankingTable{
+#rankingTable{
     width: 100%;
     text-align: center;
     border-collapse: collapse;
 }
 
-.rankingTable thead tr th {
+#rankingTable thead tr th {
     padding: 5px 0;
 }
 

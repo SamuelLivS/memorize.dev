@@ -11,7 +11,7 @@ document.getElementById('playButton').addEventListener('click', (e) => {
     if (playerName !== '') {
         let startGameLayer = document.getElementById('startGameView')
         startGameLayer.style.display = 'none'
-        dataPlayer.id = generateIdPlayer(playerName)
+        dataPlayer.id = game.createId(playerName)
         dataPlayer.name = playerName
         dataPlayer.motions = null
         startGame()
@@ -91,20 +91,10 @@ function restart() {
     motions = 0
 }
 
-function generateIdPlayer(name) { //Adaptar e juntar com o createIdWithTechs
-    return name + parseInt(Math.random() * 1000)
-}
-
-
 /* Minhas modificações */
 function recoverPlayerScore() {
     let scores = []
-    // dataPlayer.motions = motions
-    dataPlayer = {
-        id: generateIdPlayer(this.name),
-        name: 'sam',
-        motions: 16
-    }
+    dataPlayer.motions = motions
 
     //VERIFICA E RECUPERA
     if (localStorage.length !== 0) {
@@ -127,7 +117,6 @@ function recoverPlayerScore() {
             }
         }
     }
-    console.log(scores)
     organizeArray(scores)
     savePlayers(scores)
     listPlayersView(scores)
@@ -146,18 +135,26 @@ function savePlayers(arrScores) {
 
 // mostrando ranking para o jogador
 function listPlayersView(playersScores) {
-    let tableScores = document.getElementById('rankingTable').children['2'] // acessando o tbody
-    playersScores.forEach((player, indexPlayer) => {
-        let tRow = document.createElement('tr')
-        for (let prop in player) {
-            let tData = document.createElement('td')
-            if (prop === 'id') {
-                tData.innerHTML = `${indexPlayer + 1}°`
-            } else {
-                tData.innerHTML = player[prop]
+    let tableScores = document.getElementById('rankingTable').children['1'] // acessando o tbody
+    tableScores.innerHTML = ''
+    if(playersScores){
+        playersScores.forEach((player, indexPlayer) => {
+            let tRow = document.createElement('tr')
+            for (let prop in player) {
+                let tData = document.createElement('td')
+                if (prop === 'id') {
+                    tData.innerHTML = `${indexPlayer + 1}°`
+                } else {
+                    tData.innerHTML = player[prop]
+                }
+                tRow.appendChild(tData)
             }
-            tRow.appendChild(tData)
-        }
-        tableScores.appendChild(tRow)
-    })
+            tableScores.appendChild(tRow)
+        })
+    }
+}
+
+function restartRanking(){
+    localStorage.clear()
+    listPlayersView()
 }
