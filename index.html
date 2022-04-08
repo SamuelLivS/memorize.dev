@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Jogo da memória</title>
+</head>
+
+<body>
+    <section id="startGameView">
+            <h1>Memorize<span>.dev</span></h1>
+            <form id="loginForm">
+                <label for="playerName" class="sr-only">Nome</label>
+                <input maxlength="15" type="text" name="playerName" id="playerName" placeholder="Digite seu nome">
+                <button id="playButton">Jogar</button>
+            </form>
+    </section>
+
+    <section id="gameBoard">
+        <div id="f4sd56fdsf" class="card" data-icon="bootstrap">
+            <div class="cardFront">
+                <img src="./assets/images/bootstrap.png">
+            </div>
+            <div class="cardBack">
+                &lt;/&gt;
+            </div>
+        </div>
+    </section>
+
+    <section id="gameOverView">
+        <h2>Parabéns, você completou o jogo!</h2>
+        <button id="restartButton" onclick="restart()">Jogar Novamente</button>
+        <div id="rankingView">
+            <h3>Menos movimentos</h3>
+            <table class="rankingTable">
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Nome</th>
+                        <th>Movimentos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1°</td>
+                        <td>Samuel</td>
+                        <td>16</td>
+                    </tr>
+                    <tr>
+                        <td>2°</td>
+                        <td>Mikael</td>
+                        <td>17</td>
+                    </tr>
+                    <tr>
+                        <td>3°</td>
+                        <td>Maria</td>
+                        <td>17</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <script src="./scripts/game.js"></script>
+    <script src="./scripts/script.js"></script>
+</body>
+
+</html>

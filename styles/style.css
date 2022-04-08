@@ -1,0 +1,196 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Righteous', sans-serif;
+    background-color: #ad84b2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*StartGameView and GameOverView */
+#startGameView, #gameOverView{
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+#startGameView{
+    display: flex;
+}
+
+#startGameView > h1 {
+    font-size: 3rem;
+}
+
+#startGameView > h1 > span {
+    /* color: #ff1379; */
+    color: #e98e6a;
+}
+
+#loginForm{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#loginForm input, #playButton{
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: .1rem;
+}
+
+#loginForm input{
+    margin:10px 0;
+}
+
+#gameOverView > h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#restartButton, #playButton {
+    padding: 1rem;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    background-color: #e98e6a;
+    border: none;
+    color: white;
+    border-radius: .2rem;
+    cursor: pointer;
+}
+
+#restartButton:active,  #playButton:active{
+    opacity: .8;
+}
+
+/* ScoresView */
+#rankingView {
+    max-width: 300px;
+    background-color: #a23b68;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#rankingView > h3 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.rankingTable{
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.rankingTable thead tr th {
+    padding: 5px 0;
+}
+
+/* Cards and gameBoard */
+.card{
+    width: 75px;
+    height: 75px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: 200ms ease-in-out;
+}
+
+.cardFront, .cardBack {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, .45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden; /*elementos invertidos não aparecem na tela*/
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: rotateX(0deg) /*Resolveu o bug no firefox, mas não entendi o pq.*/
+}
+
+.cardFront{
+    background-color: #40173a;
+    transform: rotateY(180deg);
+}
+
+.cardFront > img {
+    max-width: 100%;
+    height: auto;
+}
+
+.cardBack{
+    font-size: 2rem;
+    background-color:#90509d;
+    color: white;
+}
+
+.flip{
+    transform: rotateY(180deg);
+}
+
+#gameBoard {
+    max-width: 900px;
+    padding: 10px;
+    display: grid;
+    grid-template: 1fr 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+/*Special Elements*/
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+  }
+
+@media (min-width: 400px) {
+    .card {
+        width: 20vmin;
+        height: 20vmin;
+    }
+}
+
+@media (min-width: 750px) {
+    .card {
+        width: 125px;
+        height: 125px;
+    }
+
+    #gameBoard {
+        grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    #rankingView {
+        max-width: 400px;
+    }
+
+    #rankingView > h3 {
+        font-size: 2rem;
+    }
+}
