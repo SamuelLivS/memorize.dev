@@ -65,9 +65,9 @@ function flipCard() {
             if (game.checkMatch()) {
                 game.clearCards()
                 if (game.checkGameOver()) {
-                    recoverPlayerScore()
                     let gameOverLayer = document.getElementById('gameOverView')
                     gameOverLayer.style.display = 'flex'
+                    recoverPlayerScore()
                 }
             } else {
                 setTimeout(() => {
@@ -95,13 +95,15 @@ function generateIdPlayer(name) { //Adaptar e juntar com o createIdWithTechs
     return name + parseInt(Math.random() * 1000)
 }
 
+
+/* Minhas modificações */
 function recoverPlayerScore() {
     let scores = []
     // dataPlayer.motions = motions
     dataPlayer = {
-        name: 'sam',
         id: generateIdPlayer(this.name),
-        motions: 17
+        name: 'sam',
+        motions: 16
     }
 
     //VERIFICA E RECUPERA
@@ -117,28 +119,45 @@ function recoverPlayerScore() {
         scores.push(dataPlayer)
     } else {
         scores.reverse() //Organizar na ordem decrescente
-        for(let i=0; i < scores.length; i++){
+        for (let i = 0; i < scores.length; i++) {
             //Verifica se algum motions é menor que o outro
-            console.log(scores[i])
-            if(dataPlayer.motions < scores[i].motions){
-                scores.splice(i,1,dataPlayer)
+            if (dataPlayer.motions < scores[i].motions) {
+                scores.splice(i, 1, dataPlayer)
                 break
             }
         }
     }
-
+    console.log(scores)
     organizeArray(scores)
     savePlayers(scores)
+    listPlayersView(scores)
 }
 
-function organizeArray(arrScores){
-    arrScores.sort((a,b) => a.motions - b.motions)
+function organizeArray(arrScores) {
+    arrScores.sort((a, b) => a.motions - b.motions)
 }
 
-function savePlayers(arrScores){
+function savePlayers(arrScores) {
     localStorage.clear()
     arrScores.forEach((score, i) => {
-        localStorage.setItem(i+1, JSON.stringify(score))
+        localStorage.setItem(i + 1, JSON.stringify(score))
     })
 }
-// recoverPlayerScore()
+
+// mostrando ranking para o jogador
+function listPlayersView(playersScores) {
+    let tableScores = document.getElementById('rankingTable').children['2'] // acessando o tbody
+    playersScores.forEach((player, indexPlayer) => {
+        let tRow = document.createElement('tr')
+        for (let prop in player) {
+            let tData = document.createElement('td')
+            if (prop === 'id') {
+                tData.innerHTML = `${indexPlayer + 1}°`
+            } else {
+                tData.innerHTML = player[prop]
+            }
+            tRow.appendChild(tData)
+        }
+        tableScores.appendChild(tRow)
+    })
+}
