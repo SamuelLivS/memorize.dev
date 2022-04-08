@@ -66,6 +66,8 @@ function flipCard() {
                 game.clearCards()
                 if (game.checkGameOver()) {
                     let gameOverLayer = document.getElementById('gameOverView')
+                    let motionUserView = document.getElementById('motionsP')
+                    motionUserView.innerHTML = `Você fez ${motions} movimentos para finalizar o game`
                     gameOverLayer.style.display = 'flex'
                     recoverPlayerScore()
                 }
